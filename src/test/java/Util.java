@@ -127,6 +127,17 @@ public class Util {
         );
     }
 
+    public static List<String> getDocumentsForIntTest2() {
+        return new ArrayList<> (
+                Arrays.asList(
+                        "toyota 4runner lift kit the best one",
+                        "when was the moon landing and how fake was it",
+                        "these surprising facts and how there is more here at the kingdom of the       oz"
+
+                        )
+        );
+    }
+
     public static List<Integer> emptyResult() {
         return new ArrayList<>();
     }

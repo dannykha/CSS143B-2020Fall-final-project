@@ -108,6 +108,52 @@ public class IntegrationTest {
         return testCases;
     }
 
+    @Test
+    public void testIntegration2() {
+        List<TestCase> cases = getTestCase2();
+        for (TestCase testCase : cases) {
+            List<Integer> actual = searcher.search(
+                    testCase.target,
+                    indexer.index(testCase.documents)
+            );
+            assertEquals(testCase.expect, actual);
+        }
+    }
+
+    private List<TestCase> getTestCase2() {
+        List<String> documents = Util.getDocumentsForIntTest2();
+
+        List<TestCase> testCases = new ArrayList<>(Arrays.asList(
+                new TestCase(
+                        documents,
+                        "",
+                        Util.emptyResult()
+                ),
+                new TestCase(
+                        documents,
+                        "toyota 4runner",
+                        new ArrayList<>(Arrays.asList(0))
+                ),
+                new TestCase(
+                        documents,
+                        "moon landing",
+                        new ArrayList<>(Arrays.asList(1))
+                ),
+                new TestCase(
+                        documents,
+                        "the",
+                        new ArrayList<>(Arrays.asList(0, 1, 2))
+                ),
+                new TestCase(
+                        documents,
+                        "and how",
+                        new ArrayList<>(Arrays.asList(1, 2))
+                )
+        ));
+        return testCases;
+    }
+
+
     private class TestCase {
         private List<String> documents;
         private String target;
